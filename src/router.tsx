@@ -4,8 +4,8 @@ import { About } from './sections/about/About'
 import { Contact } from './sections/contact/Contact'
 import { Home } from './sections/home/Home'
 import { NotFound } from './sections/notfound/NotFound'
-import { SingelAnimal } from './components/singelAnimal/SingelAnimal'
 import { Animals } from './components/animals/Animals'
+import { AnimalDetails } from './components/animalDetails/AnimalDetails'
 
 export const router = createBrowserRouter([
   {
@@ -28,7 +28,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '/animal/:id',
-        element: <SingelAnimal />,
+        element: <AnimalDetails />,
       },
       {
         path: '/animals',

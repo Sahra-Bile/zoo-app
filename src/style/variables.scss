@@ -10,3 +10,30 @@ $green: #68dea0;
 $myFont_family: 'Indie Flower', cursive;
 $tablet_breakpont: 678px;
 $desktop_breakpoint: 1200px;
+
+$primary-hue: 270;
+$black-lightness: 15%;
+$dark-lightness: 44%;
+$light-lightness: 94%;
+$white-lightness: 100%;
+$color-primary: hsl($primary-hue, 18%, 55%);
+
+// background: hsl(270, 18%, 55%);
+// background: #8e73a4;
+
+$color-white: hsl(0, 5%, $white-lightness);
+$color-light: hsl($primary-hue, 5%, $light-lightness);
+$color-black: hsl($primary-hue, 5%, $black-lightness);
+$color-dark: hsl($primary-hue, 5%, $dark-lightness);
+
+/* GENERAL CONTAINER VARIABLES */
+$container-width-lg: 76%;
+$container-width-md: 90%;
+
+/* BORDER RADIUS VARIABLES */
+$border-radius-1: 1.2rem;
+$border-radius-2: 0.8rem;
+$border-radius-3: 0.5rem;
+
+/* GENERAL TRANSITION VARIABLE */
+$transition: all 500ms ease;

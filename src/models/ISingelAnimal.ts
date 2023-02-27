@@ -2,6 +2,10 @@
 export interface ISingelAnimal{
   id:number;
   name:string;
-  shortDescription:string;
+  yearOfBirth:number;
+  latinName:string;
+  longDescription:string;
   imageUrl:string;
+  isFed: boolean;
+  lastFed: string;
 }

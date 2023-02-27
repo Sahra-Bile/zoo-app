@@ -1,8 +1,9 @@
-import React from 'react'
+// import React, { useEffect, useState } from 'react'
 import './App.scss'
 import { Nav } from './sections/nav/Nav'
 import { Outlet } from 'react-router-dom'
 import { Footer } from './sections/footer/Footer'
+// import { IAnimals } from './models/IAnimals'
 
 function App() {
   return (
