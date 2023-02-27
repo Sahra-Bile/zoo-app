@@ -1,53 +1,82 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-
 import { ISingelAnimal } from '../../models/ISingelAnimal'
-import { getSingelAnimalById } from '../../services/singelAnimalService'
+
+import { getAnimalFromLs, saveAnimalToLs } from '../../services/storageService'
 
 export const AnimalDetails = () => {
-  const [animalDetals, setAnimalDetals] = useState<ISingelAnimal>()
-  const [error, setError] = useState('')
+  const [animal, setAnimal] = useState<ISingelAnimal>({
+    id: 0,
+    name: '',
+    yearOfBirth: 0,
+    latinName: '',
+    longDescription: '',
+    imageUrl: '',
+    isFed: false,
+    lastFed: '',
+  })
+  let animalList: ISingelAnimal[] = getAnimalFromLs<ISingelAnimal>()
 
-  const { id } = useParams()
+  let params = useParams() as { id: string }
 
   useEffect(() => {
-    const getData = async () => {
-      if (id) {
-        let response = await getSingelAnimalById(+id)
-
-        if (response.animal) {
-          setAnimalDetals(response.animal)
-        } else {
-          setError(response.error)
-        }
+    for (let i = 0; i < animalList.length; i++) {
+      if (+params.id === animalList[i].id) {
+        setAnimal(animalList[i])
       }
     }
-    if (animalDetals) return
+  }, [])
 
-    getData()
-  })
+  const feedAnimal = () => {
+    let newFedAnimal = {
+      ...animal,
+      isFed: true,
+      lastFed: new Date().toString(),
+    }
+    setAnimal(newFedAnimal)
+    for (let i = 0; i < animalList.length; i++) {
+      if (animalList[i].id === newFedAnimal.id) {
+        animalList[i] = newFedAnimal
+        saveAnimalToLs(animalList)
+      }
+    }
+  }
+  getAnimalFromLs()
 
+  const imageErrorHandler = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    e.currentTarget.src =
+      'https://img.theculturetrip.com/wp-content/uploads/2021/11/2c1074k-e1638197792976.jpg'
+  }
   return (
-    <div className="container">
-      {error !== '' ? (
-        <div className="error">
-          <h2>{error}</h2>
-        </div>
-      ) : (
-        <div className="singelAnimal-container">
-          <h1>{animalDetals?.name}</h1>
-          <h2>{animalDetals?.latinName}</h2>
-          <div className="imgWrapper">
-            <img src={animalDetals?.imageUrl} alt={animalDetals?.name} />
-          </div>
-          <span>{animalDetals?.yearOfBirth}</span>
-          <p>{animalDetals?.longDescription}</p>
-          <div className="fed-container">
-            <span>{animalDetals?.lastFed}</span>
-            <span>{animalDetals?.isFed}</span>
-          </div>
-        </div>
-      )}
+    <div className="singelAnimal-container">
+      <h1>{animal.name}</h1>
+      <h2>{animal.latinName}</h2>
+      <div className="imgWrapper">
+        <img
+          src={animal.imageUrl}
+          alt={animal.name}
+          onError={imageErrorHandler}
+        />
+      </div>
+      <span>{animal.yearOfBirth}</span>
+      <p>{animal.longDescription}</p>
+      <div className="fed-container">
+        <span>
+          {' '}
+          Senast Matad: {animal.lastFed} {animal.isFed.toString()}
+        </span>
+        <p>
+          {animal.isFed ? (
+            <button className="btn primary" disabled>
+              Redan matad {animal.name}!
+            </button>
+          ) : (
+            <button className="btn primary" onClick={feedAnimal}>
+              Mata {animal.name}!
+            </button>
+          )}
+        </p>
+      </div>
     </div>
   )
 }

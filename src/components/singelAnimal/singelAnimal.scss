@@ -20,3 +20,20 @@
     background-color: #d4d93b;
   }
 }
+
+.animal-container {
+  display: grid;
+  // grid-template-columns: 50% 53%;
+  gap: 12%;
+}
+
+.animal-container__imgwrapper {
+  height: fit-content;
+  // max-height: 40rem;
+  border: 1rem solid v.$color-white;
+  transition: v.$transition;
+}
+
+.animal-container__imgwrapper:hover {
+  border-width: 0;
+}

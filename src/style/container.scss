@@ -1,0 +1,31 @@
+@use "./variables.scss" as v;
+@use "./mixins.scss" as m;
+
+.about__card {
+  background: v.$color-white;
+  padding: 1.5rem;
+  border: 2px solid transparent;
+  border-radius: v.$border-radius-1;
+  transition: v.$transition;
+}
+.about__card:hover {
+  background: transparent;
+  border-color: v.$color-white;
+  transform: translateY(-0.5rem);
+}
+
+.about__card.light {
+  background: v.$color-light;
+}
+
+.about__card.light:hover {
+  background: transparent;
+  border-color: v.$color-light;
+}
+
+/* MEDIA QUERIES (phones) */
+@media screen and (max-width: 600px) {
+  .about__card {
+    padding: 1.2rem;
+  }
+}

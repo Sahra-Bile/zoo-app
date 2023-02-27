@@ -3,6 +3,7 @@ import { IAnimals } from '../../models/IAnimals'
 import { getAnimals } from '../../services/animalsService'
 import './animals.scss'
 import { SingelAnimal } from '../singelAnimal/SingelAnimal'
+import { getAnimalFromLs, saveAnimalToLs } from '../../services/storageService'
 
 export const Animals = () => {
   const [animals, setAnimals] = useState<IAnimals[]>([])
@@ -11,11 +12,13 @@ export const Animals = () => {
     const getData = async () => {
       let AnimalsFromApi = await getAnimals()
       setAnimals(AnimalsFromApi)
+      saveAnimalToLs(AnimalsFromApi)
     }
 
-    if (animals.length > 0) return
+    let animalList: IAnimals[] = getAnimalFromLs<IAnimals>()
+    if (animalList.length === 0) return
     getData()
-  })
+  }, [])
 
   let animalHtml = animals.map((animal) => {
     return <SingelAnimal animal={animal} key={animal.id}></SingelAnimal>
