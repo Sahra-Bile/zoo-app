@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { IAnimals } from '../../models/IAnimals'
 import './singelAnimal.scss'
-import '../../style/container.scss'
+// import '../../style/container.scss'
 
 interface ISingelAnimalProps {
   animal: IAnimals
@@ -19,25 +19,23 @@ export const SingelAnimal = (props: ISingelAnimalProps) => {
   }
 
   return (
-    <div className="animal-container about__card">
-      <div className="animal">
-        <p>Lär känna mina djur!</p>
+    <>
+      <div className="animal-container">
+        <h1 className="animal-container__name">{props.animal.name}</h1>
+        <div className="animal-container__imgwrapper">
+          <img
+            src={props.animal.imageUrl}
+            alt={props.animal.name}
+            onError={imageErrorHandler}
+          />
+        </div>
+        <p className="animal-container__desc">
+          {props.animal.shortDescription}
+        </p>
+        <button className="btn primary" onClick={showMoreClick}>
+          Mer Info
+        </button>
       </div>
-      <h1 className="animal-container__name">{props.animal.name}</h1>
-
-      <div className="animal-container__imgwrapper">
-        <img
-          src={props.animal.imageUrl}
-          alt={props.animal.name}
-          onError={imageErrorHandler}
-        />
-      </div>
-      <pre className="animal-container__desc">
-        {props.animal.shortDescription}
-      </pre>
-      <button className="btn primary" onClick={showMoreClick}>
-        Mer Info
-      </button>
-    </div>
+    </>
   )
 }

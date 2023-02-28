@@ -2,55 +2,72 @@
 @use "../../style/mixins.scss" as m;
 
 .about__container {
-  display: grid;
-  grid-template-columns: 35% 53%;
-  gap: 12%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 
-  @include m.desktop {
-    grid-template-columns: 1fr;
-    gap: 1rem;
+  .about__portrait {
+    height: fit-content;
+    max-height: 40rem;
+    border: 1rem solid v.$color-white;
+    transition: v.$transition;
+
+    @include m.desktop {
+      max-height: 100rem;
+    }
+
+    &:hover {
+      border-width: 0;
+    }
   }
-}
 
-.about__portrait {
-  height: fit-content;
-  max-height: 40rem;
-  border: 1rem solid v.$color-white;
-  transition: v.$transition;
-}
-
-.about__portrait:hover {
-  border-width: 0;
-}
-
-.about__cards {
-  margin: 3rem 0 1.5rem;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-  @include m.tablet {
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+  .about__cards {
+    margin: 3rem 0 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.5rem;
+    @include m.desktop {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 5rem;
+      margin: 4rem 0 0.7rem;
+    }
+    @include m.tablet {
+      grid-template-columns: 1fr 1fr;
+      gap: 10rem;
+    }
   }
-}
 
-.about__card {
-  text-align: center;
-}
-.about__card:hover .about__card-icon {
-  background: v.$color-primary;
-  color: v.$color-white;
-}
+  .about__card {
+    text-align: center;
 
-h5 {
-  margin: 1rem 0;
-}
+    &:hover {
+      background: v.$color-primary;
+      color: v.$color-white;
+    }
 
-p {
-  margin-bottom: 0.8rem;
-  font-size: 1.3rem;
-  color: v.$color-black;
+    .about__card-icon {
+      font-size: 1.3rem;
+      color: v.$color-black;
+      border-radius: v.$border-radius-3;
+      width: fit-content;
+      margin-inline: auto;
+      padding: 0.6rem;
+      display: flex;
+      align-items: center;
+      transition: v.$transition;
+    }
+  }
 
-  @include m.tablet {
+  h5 {
+    margin: 1rem 0;
+  }
+
+  p {
+    margin-bottom: 1rem;
+    @include m.desktop {
+      text-align: center;
+      font-size: 2rem;
+    }
   }
 }

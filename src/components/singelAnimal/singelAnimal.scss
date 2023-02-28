@@ -1,39 +1,89 @@
 @use "../../style/variables.scss" as v;
 @use "../../style/mixins.scss" as m;
 
-.primary {
-  display: flex;
-  text-align: center;
-  background-color: #a9da91;
-  padding: 6px;
-  border: none;
-  border-radius: 12px;
-  color: black;
-  text-decoration: none;
-  font-size: 18px;
-  font-weight: bold;
-  font-family: 'Lato', sans-serif;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  cursor: pointer;
-  &:hover {
-    background-color: #d4d93b;
-  }
-}
-
 .animal-container {
-  display: grid;
-  // grid-template-columns: 50% 53%;
-  gap: 12%;
-}
+  // background: v.$darkest;
+  background-color: hsl(132°, 18%, 42%);
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 20%;
+  border-radius: 5px;
+  position: relative;
+  &:hover {
+    transition: 1s;
+    background-color: v.$primary-hue;
+    color: wheat;
+  }
 
-.animal-container__imgwrapper {
-  height: fit-content;
-  // max-height: 40rem;
-  border: 1rem solid v.$color-white;
-  transition: v.$transition;
-}
+  @include m.tablet {
+    width: 60%;
+    height: 50vh;
+    margin-top: 10%;
+  }
+  @include m.desktop {
+    width: 80%;
+    height: 70vh;
+    gap: 1%;
+    margin-top: 5%;
+  }
+  &__desc {
+    text-align: center;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-block-end: 0;
+    margin-block-start: 0;
+    margin-bottom: 5px;
+    font-family: v.$header_font;
 
-.animal-container__imgwrapper:hover {
-  border-width: 0;
+    @include m.desktop {
+      font-size: 2rem;
+    }
+  }
+
+  &__name {
+    margin-bottom: 15px;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+    font-family: v.$first_page_font;
+  }
+
+  &__imgwrapper {
+    width: 60%;
+    height: 50%;
+    margin: 0;
+    position: relative;
+    border-radius: 2px;
+    border-radius: v.$border-radius-3;
+    transition: v.$transition;
+    overflow: hidden;
+    @include m.desktop {
+      width: 70%;
+      height: 60%;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: top;
+    }
+  }
+
+  .btn {
+    margin-bottom: 5px;
+    font-family: v.$all_text;
+    background-color: #0f0f0f;
+    &:hover {
+      background-color: transparent;
+      border-color: v.$color-white;
+      color: black;
+    }
+  }
 }

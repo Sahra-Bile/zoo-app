@@ -7,7 +7,7 @@ export const data = [
     text: "Jag hjälper dig att bli hjälte för en dag 🐻",
     name: "sahra Bile",
     link: 'sahra.zoo134@gmail.com',
-    phone: '0723209754,',
+    phone: '0723209754',
     icon1: <AiOutlineMail/>,
     icon2: <BsFillTelephoneForwardFill/>
 
@@ -18,11 +18,11 @@ export const data = [
     text: "Jag hjälper dig att skapa en oförglömlig dag!✨",
     name: "Jasika Silver",
     link: 'jasika.zoo13@gmail.com',
-    phone: '0744556432,',
+    phone: '0744556432',
     icon1: <AiOutlineMail/>,
     icon2: <BsFillTelephoneForwardFill/>
 
-  },
+  }
  
 
 ]

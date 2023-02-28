@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { ISingelAnimal } from '../../models/ISingelAnimal'
-
+import { FedStatus } from './fedStatus'
 import { getAnimalFromLs, saveAnimalToLs } from '../../services/storageService'
+import './animalDetails.scss'
 
 export const AnimalDetails = () => {
   const [animal, setAnimal] = useState<ISingelAnimal>({
@@ -15,68 +16,70 @@ export const AnimalDetails = () => {
     isFed: false,
     lastFed: '',
   })
-  let animalList: ISingelAnimal[] = getAnimalFromLs<ISingelAnimal>()
 
   let params = useParams() as { id: string }
 
   useEffect(() => {
-    for (let i = 0; i < animalList.length; i++) {
-      if (+params.id === animalList[i].id) {
-        setAnimal(animalList[i])
+    let currentDate = new Date().getTime()
+    let animalsFromLS: ISingelAnimal[] = getAnimalFromLs()
+
+    let hours = Math.floor(10800000)
+
+    //*  kontrollera om det gått mer än 3 timmar sedan senast  djuren blev matades - uppdatera till false
+
+    for (let i = 0; i < animalsFromLS.length; i++) {
+      if (+currentDate - new Date(animalsFromLS[i].lastFed).getTime() > hours) {
+        animalsFromLS[i].isFed = false
+      }
+
+      //* jämför id, få rätt djur och ange tillstånd.
+      if (+params.id === animalsFromLS[i].id) {
+        setAnimal(animalsFromLS[i])
       }
     }
+    //* spara i  localstorage
+    saveAnimalToLs(animalsFromLS)
   }, [])
 
-  const feedAnimal = () => {
-    let newFedAnimal = {
-      ...animal,
-      isFed: true,
-      lastFed: new Date().toString(),
-    }
-    setAnimal(newFedAnimal)
-    for (let i = 0; i < animalList.length; i++) {
-      if (animalList[i].id === newFedAnimal.id) {
-        animalList[i] = newFedAnimal
-        saveAnimalToLs(animalList)
+  //* if isFed value = false - uppdatera till true och spara till lokalStorage
+  const feedAnimal = (animal: ISingelAnimal) => {
+    animal.isFed = true
+    let feedTime = new Date()
+    animal.lastFed = feedTime.toLocaleString()
+    setAnimal({ ...animal })
+
+    let animalsFromLS: ISingelAnimal[] = getAnimalFromLs()
+
+    for (let i = 0; i < animalsFromLS.length; i++) {
+      if (animal.id === animalsFromLS[i].id) {
+        animalsFromLS[i] = { ...animal }
       }
     }
-  }
-  getAnimalFromLs()
 
-  const imageErrorHandler = (e: React.SyntheticEvent<HTMLImageElement>) => {
-    e.currentTarget.src =
-      'https://img.theculturetrip.com/wp-content/uploads/2021/11/2c1074k-e1638197792976.jpg'
+    saveAnimalToLs(animalsFromLS)
   }
+
   return (
-    <div className="singelAnimal-container">
-      <h1>{animal.name}</h1>
-      <h2>{animal.latinName}</h2>
-      <div className="imgWrapper">
+    <div className="singelAnimal-container ">
+      <h1 className="singelAnimal-container__name"> Namn: {animal.name}</h1>
+      <h2 className="singelAnimal-container__latinName">
+        Latin Namn: {animal.latinName}
+      </h2>
+      <div className="singelAnimal-container__imgWrapper">
         <img
           src={animal.imageUrl}
           alt={animal.name}
-          onError={imageErrorHandler}
+          onError={(e) =>
+            (e.currentTarget.src =
+              'https://images.unsplash.com/photo-1504006833117-8886a355efbf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80')
+          }
         />
       </div>
-      <span>{animal.yearOfBirth}</span>
-      <p>{animal.longDescription}</p>
-      <div className="fed-container">
-        <span>
-          {' '}
-          Senast Matad: {animal.lastFed} {animal.isFed.toString()}
-        </span>
-        <p>
-          {animal.isFed ? (
-            <button className="btn primary" disabled>
-              Redan matad {animal.name}!
-            </button>
-          ) : (
-            <button className="btn primary" onClick={feedAnimal}>
-              Mata {animal.name}!
-            </button>
-          )}
-        </p>
-      </div>
+      <span className="singelAnimal-container__bith">
+        Född: {animal.yearOfBirth}
+      </span>
+      <p className="singelAnimal-container__desc">{animal.longDescription}</p>
+      <FedStatus animal={animal} feedAnimal={feedAnimal} />
     </div>
   )
 }

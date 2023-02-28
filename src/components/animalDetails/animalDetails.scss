@@ -1,0 +1,74 @@
+@use "../../style/variables.scss" as v;
+@use "../../style/mixins.scss" as m;
+
+.singelAnimal-container {
+  background: white;
+  margin-top: 10%;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+
+  @include m.desktop {
+    margin-top: 5%;
+  }
+
+  &__name,
+  &__latinName {
+    text-align: center;
+    font-size: 2rem;
+    text-align: center;
+    font-family: v.$header_font;
+  }
+
+  &__desc {
+    font-size: 1.5rem;
+    color: v.$color-black;
+    margin-inline: auto;
+    padding: 0.6rem;
+    transition: v.$transition;
+    font-family: v.$header_font;
+
+    @include m.desktop {
+      letter-spacing: 1px;
+    }
+  }
+
+  &__imgWrapper {
+    height: fit-content;
+    border: 5rem solid v.$color-white;
+    transition: v.$transition;
+    border-radius: v.$border-radius-2;
+    background: transparent;
+    border-color: v.$color-white;
+    transform: translateY(-0.5rem);
+    @include m.desktop {
+      border: 8rem solid v.$color-white;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: top;
+    }
+  }
+
+  &__bith {
+    font-size: 1.5rem;
+    font-family: v.$myFont_family;
+  }
+
+  .fed-status {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .back {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding: 20px;
+  }
+}

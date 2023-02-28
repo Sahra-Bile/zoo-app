@@ -83,13 +83,13 @@
 }
 
 @mixin tablet {
-  @media screen and (max-width: v.$tablet_breakpont) {
+  @media screen and (min-width: v.$tablet_breakpont) {
     @content;
   }
 }
 
 @mixin desktop {
-  @media screen and (max-width: v.$desktop_breakpoint) {
+  @media screen and (min-width: v.$desktop_breakpoint) {
     @content;
   }
 }
