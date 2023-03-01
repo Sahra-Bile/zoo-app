@@ -4,6 +4,7 @@ import { ISingelAnimal } from '../../models/ISingelAnimal'
 import { FedStatus } from './fedStatus'
 import { getAnimalFromLs, saveAnimalToLs } from '../../services/storageService'
 import './animalDetails.scss'
+import '../../style/container.scss'
 
 export const AnimalDetails = () => {
   const [animal, setAnimal] = useState<ISingelAnimal>({
@@ -15,6 +16,7 @@ export const AnimalDetails = () => {
     imageUrl: '',
     isFed: false,
     lastFed: '',
+    medicine: '',
   })
 
   let params = useParams() as { id: string }
@@ -39,7 +41,7 @@ export const AnimalDetails = () => {
     }
     //* spara i  localstorage
     saveAnimalToLs(animalsFromLS)
-  }, [])
+  }, [params.id])
 
   //* if isFed value = false - uppdatera till true och spara till lokalStorage
   const feedAnimal = (animal: ISingelAnimal) => {
@@ -61,10 +63,6 @@ export const AnimalDetails = () => {
 
   return (
     <div className="singelAnimal-container ">
-      <h1 className="singelAnimal-container__name"> Namn: {animal.name}</h1>
-      <h2 className="singelAnimal-container__latinName">
-        Latin Namn: {animal.latinName}
-      </h2>
       <div className="singelAnimal-container__imgWrapper">
         <img
           src={animal.imageUrl}
@@ -75,10 +73,30 @@ export const AnimalDetails = () => {
           }
         />
       </div>
-      <span className="singelAnimal-container__bith">
-        Född: {animal.yearOfBirth}
-      </span>
-      <p className="singelAnimal-container__desc">{animal.longDescription}</p>
+      <div className="singelAnimal-container__details">
+        <p className="singelAnimal-container__details__fakta">
+          {' '}
+          Faktaruta om {animal.name}
+        </p>
+        <h1 className="singelAnimal-container__details__name">
+          {' '}
+          Namn: {animal.name}
+        </h1>
+        <h2 className="singelAnimal-container__details__latinName">
+          Latin Namn: {animal.latinName}
+        </h2>
+        <span className="singelAnimal-container__details__bith">
+          Ålder: {2023 - animal.yearOfBirth}
+        </span>
+        <span className="singelAnimal-container__details__bith">
+          medicinering: {animal.medicine}
+        </span>
+      </div>
+      <div className="singelAnimal-container__text">
+        <p className="singelAnimal-container__text__desc">
+          {animal.longDescription}
+        </p>
+      </div>
       <FedStatus animal={animal} feedAnimal={feedAnimal} />
     </div>
   )

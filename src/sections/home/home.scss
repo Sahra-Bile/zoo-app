@@ -2,15 +2,8 @@
 @use "../../style/mixins.scss" as m;
 
 .home-container {
-  margin-top: 5rem;
-  display: grid;
-  place-items: center;
   background: v.$color-white;
   transition: v.$transition;
-  @include m.desktop {
-    margin-top: 0;
-    height: 100vh;
-  }
 
   &__hero {
     display: flex;
@@ -19,27 +12,29 @@
     position: relative;
 
     .welcome {
-      width: 35rem;
+      width: 20rem;
       text-align: center;
       margin: 0.6rem 0 2rem;
       font-size: 1.5rem;
+      font-family: v.$header_font;
 
-      @include m.tablet {
-        width: 100%;
+      @include m.desktop {
+        width: 30rem;
+        font-size: 2rem;
       }
     }
 
     &__img-wrapper {
-      width: 50rem;
-      height: 30rem;
+      width: 35rem;
+      height: 20rem;
+      max-width: 80%;
+      max-height: 50vh;
       border-radius: 9rem 9rem 2rem 2rem;
       overflow: hidden;
       margin-bottom: 1.5rem;
       @include m.tablet {
-        width: 30rem;
-        height: 20rem;
-        max-width: 80%;
-        max-height: 50vh;
+        width: 50rem;
+        height: 30rem;
       }
     }
   }

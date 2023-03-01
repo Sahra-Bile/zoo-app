@@ -2,46 +2,110 @@
 @use "../../style/mixins.scss" as m;
 
 .singelAnimal-container {
-  background: white;
-  margin-top: 10%;
+  margin: 0 auto;
+  max-width: 1000px;
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  grid-auto-rows: auto;
+  gap: 20px;
 
   @include m.desktop {
     margin-top: 5%;
+    grid-template-columns: repeat(auto-fill, minmax(800px, 1fr));
   }
 
-  &__name,
-  &__latinName {
-    text-align: center;
-    font-size: 2rem;
-    text-align: center;
-    font-family: v.$header_font;
+  &__details {
+    line-height: 1;
+    font-size: 0.9em;
+    padding: 10px;
+    background: v.$grey;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    border-bottom: 2px solid v.$darkest;
+    border-right: 2px solid v.$darkest;
+    border-left: 2px solid v.$darkest;
+
+    &__name {
+      text-align: center;
+      font-size: 1.5rem;
+      font-family: v.$header_font;
+      padding: 10px;
+      color: #fff;
+    }
+    &__fakta {
+      text-align: center;
+      font-size: 2.5rem;
+      font-family: v.$all_text;
+      padding: 10px;
+      color: #fff;
+    }
+    &__latinName {
+      text-align: center;
+      font-size: 1.5rem;
+      font-family: v.$header_font;
+      color: #fff;
+      padding: 10px;
+    }
+
+    &__bith {
+      font-size: 2rem;
+      font-family: v.$myFont_family;
+      padding: 10px;
+    }
   }
 
-  &__desc {
-    font-size: 1.5rem;
-    color: v.$color-black;
-    margin-inline: auto;
-    padding: 0.6rem;
-    transition: v.$transition;
-    font-family: v.$header_font;
-
-    @include m.desktop {
+  &__text {
+    line-height: 2;
+    font-size: 0.9em;
+    padding: 30px;
+    background: v.$grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    border-bottom: 2px solid v.$darkest;
+    border-right: 2px solid v.$darkest;
+    border-left: 2px solid v.$darkest;
+    &__desc {
+      font-size: 1.5rem;
+      color: v.$color-white;
+      margin-inline: auto;
+      padding: 0.6rem;
+      transition: v.$transition;
+      font-family: v.$header_font;
       letter-spacing: 1px;
+
+      @include m.desktop {
+        font-size: 2.5rem;
+        padding: 1rem;
+      }
     }
   }
 
   &__imgWrapper {
+    width: 100%;
+    margin-top: 100px;
+    padding: 10px;
     height: fit-content;
-    border: 5rem solid v.$color-white;
+    object-fit: cover;
+    display: block;
+    border-top: 2px solid #333333;
+    border-right: 2px solid #333333;
+    border-left: 2px solid #333333;
     transition: v.$transition;
     border-radius: v.$border-radius-2;
     background: transparent;
     border-color: v.$color-white;
     transform: translateY(-0.5rem);
+    border-radius: 9rem 9rem 2rem 2rem;
+    overflow: hidden;
+
     @include m.desktop {
-      border: 8rem solid v.$color-white;
+      border: 3rem solid v.$color-white;
+      margin-top: 0;
     }
 
     img {
@@ -50,11 +114,6 @@
       object-fit: contain;
       object-position: top;
     }
-  }
-
-  &__bith {
-    font-size: 1.5rem;
-    font-family: v.$myFont_family;
   }
 
   .fed-status {
@@ -71,4 +130,10 @@
     align-items: flex-end;
     padding: 20px;
   }
+}
+
+.lastFeed {
+  text-align: center;
+  font-size: 2rem;
+  font-family: v.$header_font;
 }

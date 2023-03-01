@@ -8,4 +8,5 @@ export interface ISingelAnimal{
   imageUrl:string;
   isFed: boolean;
   lastFed: string;
+  medicine: string;
 }

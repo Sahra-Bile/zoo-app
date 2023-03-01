@@ -2,7 +2,6 @@
 @use "../../style/mixins.scss" as m;
 
 .animal-container {
-  // background: v.$darkest;
   background-color: hsl(132°, 18%, 42%);
   width: 100%;
   height: 50vh;
@@ -13,11 +12,6 @@
   margin-top: 20%;
   border-radius: 5px;
   position: relative;
-  &:hover {
-    transition: 1s;
-    background-color: v.$primary-hue;
-    color: wheat;
-  }
 
   @include m.tablet {
     width: 60%;
@@ -34,14 +28,13 @@
     text-align: center;
     color: white;
     font-size: 1.5rem;
-    font-weight: bold;
-    margin-block-end: 0;
-    margin-block-start: 0;
     margin-bottom: 5px;
-    font-family: v.$header_font;
+
+    font-family: v.$myFont_family;
 
     @include m.desktop {
       font-size: 2rem;
+      letter-spacing: 1.5px;
     }
   }
 
@@ -51,21 +44,18 @@
     font-weight: bold;
     text-align: center;
     color: white;
-    font-family: v.$first_page_font;
+    font-family: v.$myFont_family;
   }
 
   &__imgwrapper {
-    width: 60%;
-    height: 50%;
+    height: 60%;
     margin: 0;
-    position: relative;
     border-radius: 2px;
     border-radius: v.$border-radius-3;
     transition: v.$transition;
     overflow: hidden;
     @include m.desktop {
-      width: 70%;
-      height: 60%;
+      height: 75%;
     }
 
     img {
@@ -87,3 +77,57 @@
     }
   }
 }
+// .animal-container {
+//   // margin: 0 auto;
+//   max-width: 1000px;
+//   display: grid;
+//   grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
+//   grid-auto-rows: auto;
+//   gap: 20px;
+
+//   display: grid;
+//   grid-template-columns: repeat(2, 1fr);
+//   gap: 10px;
+//   font-family: sans-serif;
+//   padding-top: 30px;
+
+//   &__animal {
+//     box-sizing: border-box;
+
+// &__image {
+//   width: 100%;
+//   height: 150px;
+//   object-fit: cover;
+//   display: block;
+//   border-top: 2px solid #333333;
+//   border-right: 2px solid #333333;
+//   border-left: 2px solid #333333;
+// }
+
+//     &__content {
+//       line-height: 1.5;
+//       font-size: 0.9em;
+//       padding: 15px;
+//       background: #fafafa;
+//       border-right: 2px solid #333333;
+//       border-left: 2px solid #333333;
+//     }
+
+//     p {
+//       margin-top: 0;
+//     }
+
+//     .card__info {
+//       padding: 15px;
+//       display: flex;
+//       justify-content: space-between;
+//       align-items: center;
+//       color: #555555;
+//       background: #eeeeee;
+//       font-size: 0.8em;
+//       border-bottom: 2px solid #333333;
+//       border-right: 2px solid #333333;
+//       border-left: 2px solid #333333;
+//     }
+//   }
+// }

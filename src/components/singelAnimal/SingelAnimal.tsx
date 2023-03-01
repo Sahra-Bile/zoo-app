@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { IAnimals } from '../../models/IAnimals'
 import './singelAnimal.scss'
-// import '../../style/container.scss'
+import '../../style/container.scss'
 
 interface ISingelAnimalProps {
   animal: IAnimals

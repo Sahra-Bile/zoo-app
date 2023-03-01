@@ -3,6 +3,7 @@ import { IAnimals } from '../../models/IAnimals'
 import { getAnimals } from '../../services/animalsService'
 import './animals.scss'
 import '../../style/container.scss'
+
 import { SingelAnimal } from '../singelAnimal/SingelAnimal'
 import { getAnimalFromLs, saveAnimalToLs } from '../../services/storageService'
 
@@ -28,5 +29,5 @@ export const Animals = () => {
     return <SingelAnimal animal={animal} key={animal.id}></SingelAnimal>
   })
 
-  return <div className=" container big-container ">{animalHtml}</div>
+  return <div className="big-container">{animalHtml}</div>
 }

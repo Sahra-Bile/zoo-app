@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { ISingelAnimal } from '../../models/ISingelAnimal'
+import './animalDetails.scss'
 
 interface IFedStatusProps {
   animal: ISingelAnimal
@@ -14,7 +15,8 @@ export const FedStatus = (props: IFedStatusProps) => {
   return (
     <>
       <div className="fed-status">
-        <p>senast matad:</p> <p>{props.animal.lastFed}</p>
+        <p className="lastFeed"> senast matad:</p>{' '}
+        <p className="lastFeed">{props.animal.lastFed}</p>
         <br />
         {props.animal.isFed ? (
           <button className="btn primary" disabled>
@@ -27,12 +29,12 @@ export const FedStatus = (props: IFedStatusProps) => {
               changeFedStatus(props.animal)
             }}
           >
-            Mata {props.animal.name}
+            Mata {props.animal.name} det har gått mer än 3 timmar nu
           </button>
         )}
         <div className="back">
           <Link to={'/'}>
-            <span className="btn primary">Gå tillbaka till första sidan!</span>
+            <span className="btn primary">Gå tillbaka till startsida</span>
           </Link>
         </div>
       </div>

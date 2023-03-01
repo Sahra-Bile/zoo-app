@@ -1,4 +1,3 @@
-import './App.scss'
 import { Nav } from './sections/nav/Nav'
 import { Outlet } from 'react-router-dom'
 import { Footer } from './sections/footer/Footer'

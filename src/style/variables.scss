@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@1,6..96,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Mynerve&display=swap');
+
 $dark: #374151;
 $darker: #1f2937;
 $darker: #1f2937;
@@ -19,7 +20,9 @@ $black-lightness: 15%;
 $dark-lightness: 44%;
 $light-lightness: 94%;
 $white-lightness: 100%;
-$color-primary: hsl($primary-hue, 18%, 42);
+$color-primary: hsl(132, 18%, 42);
+
+$color-primary_2: hsl(266, 23%, 76%);
 
 // background: hsl(270, 18%, 55%);
 // background: #8e73a4;
