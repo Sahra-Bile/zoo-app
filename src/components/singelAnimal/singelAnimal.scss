@@ -1,8 +1,11 @@
 @use "../../style/variables.scss" as v;
 @use "../../style/mixins.scss" as m;
 
+#animals {
+  background: v.$color-primary_2;
+}
 .animal-container {
-  background-color: hsl(132°, 18%, 42%);
+  background-color: hsl(132°, 11%, 54%);
   width: 100%;
   height: 50vh;
   display: flex;
@@ -26,11 +29,10 @@
   }
   &__desc {
     text-align: center;
-    color: white;
+    color: #000;
     font-size: 1.5rem;
     margin-bottom: 5px;
-
-    font-family: v.$myFont_family;
+    font-family: v.$header_font;
 
     @include m.desktop {
       font-size: 2rem;
@@ -43,7 +45,7 @@
     font-size: 2rem;
     font-weight: bold;
     text-align: center;
-    color: white;
+    color: #000;
     font-family: v.$myFont_family;
   }
 

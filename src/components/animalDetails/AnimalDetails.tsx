@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { ISingelAnimal } from '../../models/ISingelAnimal'
-import { FedStatus } from './fedStatus'
+import { FeedStatus } from './fedStatus'
 import { getAnimalFromLs, saveAnimalToLs } from '../../services/storageService'
 import './animalDetails.scss'
 import '../../style/container.scss'
@@ -19,29 +19,29 @@ export const AnimalDetails = () => {
     medicine: '',
   })
 
-  let params = useParams() as { id: string }
+  let param = useParams() as { id: string }
 
   useEffect(() => {
     let currentDate = new Date().getTime()
-    let animalsFromLS: ISingelAnimal[] = getAnimalFromLs()
+    let animalFromLS: ISingelAnimal[] = getAnimalFromLs()
 
     let hours = Math.floor(10800000)
 
     //*  kontrollera om det gått mer än 3 timmar sedan senast  djuren blev matades - uppdatera till false
 
-    for (let i = 0; i < animalsFromLS.length; i++) {
-      if (+currentDate - new Date(animalsFromLS[i].lastFed).getTime() > hours) {
-        animalsFromLS[i].isFed = false
+    for (let i = 0; i < animalFromLS.length; i++) {
+      if (+currentDate - new Date(animalFromLS[i].lastFed).getTime() > hours) {
+        animalFromLS[i].isFed = false
       }
 
-      //* jämför id, få rätt djur och ange tillstånd.
-      if (+params.id === animalsFromLS[i].id) {
-        setAnimal(animalsFromLS[i])
+      //* jämför id, få rätt djur.
+      if (+param.id === animalFromLS[i].id) {
+        setAnimal(animalFromLS[i])
       }
     }
     //* spara i  localstorage
-    saveAnimalToLs(animalsFromLS)
-  }, [params.id])
+    saveAnimalToLs(animalFromLS)
+  }, [param.id])
 
   //* if isFed value = false - uppdatera till true och spara till lokalStorage
   const feedAnimal = (animal: ISingelAnimal) => {
@@ -50,54 +50,56 @@ export const AnimalDetails = () => {
     animal.lastFed = feedTime.toLocaleString()
     setAnimal({ ...animal })
 
-    let animalsFromLS: ISingelAnimal[] = getAnimalFromLs()
+    let animalFromLS: ISingelAnimal[] = getAnimalFromLs()
 
-    for (let i = 0; i < animalsFromLS.length; i++) {
-      if (animal.id === animalsFromLS[i].id) {
-        animalsFromLS[i] = { ...animal }
+    for (let i = 0; i < animalFromLS.length; i++) {
+      if (animal.id === animalFromLS[i].id) {
+        animalFromLS[i] = { ...animal }
       }
     }
 
-    saveAnimalToLs(animalsFromLS)
+    saveAnimalToLs(animalFromLS)
   }
 
   return (
-    <div className="singelAnimal-container ">
-      <div className="singelAnimal-container__imgWrapper">
-        <img
-          src={animal.imageUrl}
-          alt={animal.name}
-          onError={(e) =>
-            (e.currentTarget.src =
-              'https://images.unsplash.com/photo-1504006833117-8886a355efbf?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2670&q=80')
-          }
-        />
+    <section id="animals">
+      <div className="singelAnimal-container ">
+        <div className="singelAnimal-container__imgWrapper">
+          <img
+            src={animal.imageUrl}
+            alt={animal.name}
+            onError={(e) =>
+              (e.currentTarget.src =
+                'https://img.theculturetrip.com/wp-content/uploads/2021/11/2c1074k-e1638197792976.jpg')
+            }
+          />
+        </div>
+        <div className="singelAnimal-container__details">
+          <p className="singelAnimal-container__details__fakta">
+            {' '}
+            Faktaruta om {animal.name}
+          </p>
+          <h1 className="singelAnimal-container__details__name">
+            {' '}
+            Namn: {animal.name}
+          </h1>
+          <h2 className="singelAnimal-container__details__latinName">
+            Latinskt Namn: {animal.latinName}
+          </h2>
+          <span className="singelAnimal-container__details__bith">
+            Ålder: {2023 - animal.yearOfBirth}
+          </span>
+          <span className="singelAnimal-container__details__bith">
+            medicinering: {animal.medicine}
+          </span>
+        </div>
+        <div className="singelAnimal-container__text">
+          <p className="singelAnimal-container__text__desc">
+            {animal.longDescription}
+          </p>
+        </div>
+        <FeedStatus animal={animal} feedAnimal={feedAnimal} />
       </div>
-      <div className="singelAnimal-container__details">
-        <p className="singelAnimal-container__details__fakta">
-          {' '}
-          Faktaruta om {animal.name}
-        </p>
-        <h1 className="singelAnimal-container__details__name">
-          {' '}
-          Namn: {animal.name}
-        </h1>
-        <h2 className="singelAnimal-container__details__latinName">
-          Latin Namn: {animal.latinName}
-        </h2>
-        <span className="singelAnimal-container__details__bith">
-          Ålder: {2023 - animal.yearOfBirth}
-        </span>
-        <span className="singelAnimal-container__details__bith">
-          medicinering: {animal.medicine}
-        </span>
-      </div>
-      <div className="singelAnimal-container__text">
-        <p className="singelAnimal-container__text__desc">
-          {animal.longDescription}
-        </p>
-      </div>
-      <FedStatus animal={animal} feedAnimal={feedAnimal} />
-    </div>
+    </section>
   )
 }

@@ -1,62 +1,47 @@
 @use "../../style/variables.scss" as v;
 @use "../../style/mixins.scss" as m;
 
+#about {
+  background: v.$color-primary_2;
+}
 .about__container {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 35% 53%;
+  gap: 12%;
+
+  @include m.desktop {
+    .about__container {
+      grid-template-columns: 3fr;
+    }
+  }
 
   .about__portrait {
     height: fit-content;
     max-height: 40rem;
-    border: 1rem solid v.$color-white;
+    border: 1rem solid white;
     transition: v.$transition;
+    margin-top: 50px;
+    padding: 50px;
+  }
 
-    @include m.desktop {
-      max-height: 100rem;
-    }
-
-    &:hover {
-      border-width: 0;
-    }
+  .about__portrait:hover {
+    border-width: 0;
   }
 
   .about__cards {
     margin: 3rem 0 1.5rem;
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
-    @include m.desktop {
-      grid-template-columns: repeat(2, 1fr);
-      gap: 5rem;
-      margin: 4rem 0 0.7rem;
-    }
+
     @include m.tablet {
       grid-template-columns: 1fr 1fr;
-      gap: 10rem;
+      gap: 1rem;
     }
   }
 
   .about__card {
     text-align: center;
-
-    &:hover {
-      background: v.$color-primary;
-      color: v.$color-white;
-    }
-
-    .about__card-icon {
-      font-size: 1.3rem;
-      color: v.$color-black;
-      border-radius: v.$border-radius-3;
-      width: fit-content;
-      margin-inline: auto;
-      padding: 0.6rem;
-      display: flex;
-      align-items: center;
-      transition: v.$transition;
-    }
   }
 
   h5 {
@@ -64,10 +49,15 @@
   }
 
   p {
-    margin-bottom: 1rem;
-    @include m.desktop {
-      text-align: center;
-      font-size: 2rem;
-    }
+    margin-bottom: 0.8rem;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    font-family: v.$header_font;
+  }
+}
+
+@include m.desktop {
+  h2 {
+    text-align: center;
   }
 }

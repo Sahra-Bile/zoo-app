@@ -1,15 +1,17 @@
 
-const LOCALSTORAGE_KEY = "animals-list";
+const LOCALSTORAGE_KEY = "animals";
 
-//** man måste tala om vad man ska få type parameter) T in <T>(): T[]  */
-export const getAnimalFromLs = <T>(): T[] => {
+//* jag hade kunnat använda mina interface som datatyp men jag har olika interface och jag vill använda dem och inte just en av dem så jag skapade möjlighet till att kunna använda olika datatyp i mina localStorage funktioner.
+
+export const getAnimalFromLs = <AniamlData>(): AniamlData[] => {
   let animalFromLS = localStorage.getItem(LOCALSTORAGE_KEY) || "[]";
   return JSON.parse(animalFromLS);
 };
 
 
-//** samma sak här (parameter) data: T */
-export const saveAnimalToLs = <T>(data: T): void => {
+
+// //** samma sak här (parameter) data: T */
+export const saveAnimalToLs = <AniamlData>(data: AniamlData): void => {
   localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(data));
 };
 

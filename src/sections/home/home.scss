@@ -2,7 +2,7 @@
 @use "../../style/mixins.scss" as m;
 
 .home-container {
-  background: v.$color-white;
+  background: v.$color-primary_2;
   transition: v.$transition;
 
   &__hero {

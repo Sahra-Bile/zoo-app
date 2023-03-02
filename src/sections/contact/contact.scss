@@ -1,2 +1,77 @@
 @use "../../style/variables.scss" as v;
 @use "../../style/mixins.scss" as m;
+
+#contact {
+  background: v.$color-primary_2;
+}
+.about__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  .about__portrait {
+    height: fit-content;
+    max-height: 40rem;
+    border: 1rem solid v.$color-white;
+    transition: v.$transition;
+
+    @include m.desktop {
+      max-height: 100rem;
+    }
+
+    &:hover {
+      border-width: 0;
+    }
+  }
+
+  .about__cards {
+    margin: 3rem 0 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 1.5rem;
+    @include m.desktop {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 5rem;
+      margin: 4rem 0 0.7rem;
+    }
+    @include m.tablet {
+      grid-template-columns: 1fr 1fr;
+      gap: 10rem;
+    }
+  }
+
+  .about__card {
+    text-align: center;
+
+    &:hover {
+      background: v.$color-primary;
+      color: v.$color-white;
+    }
+
+    .about__card-icon {
+      font-size: 1.3rem;
+      color: v.$color-black;
+      border-radius: v.$border-radius-3;
+      width: fit-content;
+      margin-inline: auto;
+      padding: 0.6rem;
+      display: flex;
+      align-items: center;
+      transition: v.$transition;
+    }
+  }
+
+  .contact {
+    margin: 1rem 0;
+    text-align: center;
+  }
+
+  p {
+    margin-bottom: 1rem;
+    @include m.desktop {
+      text-align: center;
+      font-size: 2rem;
+    }
+  }
+}

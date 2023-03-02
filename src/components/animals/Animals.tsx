@@ -29,5 +29,9 @@ export const Animals = () => {
     return <SingelAnimal animal={animal} key={animal.id}></SingelAnimal>
   })
 
-  return <div className="big-container">{animalHtml}</div>
+  return (
+    <section id="animals">
+      <div className="big-container">{animalHtml}</div>
+    </section>
+  )
 }

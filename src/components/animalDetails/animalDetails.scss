@@ -17,13 +17,13 @@
   &__details {
     line-height: 1;
     font-size: 0.9em;
-    padding: 10px;
+    padding: 30px;
     background: v.$grey;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: #fff;
+    color: #000;
     border-bottom: 2px solid v.$darkest;
     border-right: 2px solid v.$darkest;
     border-left: 2px solid v.$darkest;
@@ -33,20 +33,20 @@
       font-size: 1.5rem;
       font-family: v.$header_font;
       padding: 10px;
-      color: #fff;
+      color: #000;
     }
     &__fakta {
       text-align: center;
       font-size: 2.5rem;
       font-family: v.$all_text;
       padding: 10px;
-      color: #fff;
+      color: #000;
     }
     &__latinName {
       text-align: center;
       font-size: 1.5rem;
       font-family: v.$header_font;
-      color: #fff;
+      color: #000;
       padding: 10px;
     }
 
@@ -60,18 +60,18 @@
   &__text {
     line-height: 2;
     font-size: 0.9em;
-    padding: 30px;
+    padding: 20px;
     background: v.$grey;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #fff;
     border-bottom: 2px solid v.$darkest;
     border-right: 2px solid v.$darkest;
     border-left: 2px solid v.$darkest;
     &__desc {
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       color: v.$color-white;
+      color: #000;
       margin-inline: auto;
       padding: 0.6rem;
       transition: v.$transition;
@@ -79,7 +79,7 @@
       letter-spacing: 1px;
 
       @include m.desktop {
-        font-size: 2.5rem;
+        font-size: 1.5rem;
         padding: 1rem;
       }
     }
@@ -92,9 +92,6 @@
     height: fit-content;
     object-fit: cover;
     display: block;
-    border-top: 2px solid #333333;
-    border-right: 2px solid #333333;
-    border-left: 2px solid #333333;
     transition: v.$transition;
     border-radius: v.$border-radius-2;
     background: transparent;
@@ -104,8 +101,13 @@
     overflow: hidden;
 
     @include m.desktop {
-      border: 3rem solid v.$color-white;
+      border: 1rem solid v.$color-black;
       margin-top: 0;
+    }
+    @include m.tablet {
+      width: 100%;
+      height: 100%;
+      display: block;
     }
 
     img {
