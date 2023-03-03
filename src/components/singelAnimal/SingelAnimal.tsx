@@ -1,5 +1,8 @@
 import { useNavigate } from 'react-router-dom'
 import { IAnimals } from '../../models/IAnimals'
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
 import './singelAnimal.scss'
 import '../../style/container.scss'
 
@@ -8,6 +11,14 @@ interface ISingelAnimalProps {
 }
 export const SingelAnimal = (props: ISingelAnimalProps) => {
   const navigate = useNavigate()
+
+  const notify = () => {
+    if (Date.now() - +new Date(props.animal.lastFed).getTime() > 10800000) {
+      toast(props.animal.name + ' har inte fått mat!')
+    } else {
+      toast(props.animal.name + ' har fått mat!')
+    }
+  }
 
   const showMoreClick = () => {
     navigate(`/animal/${props.animal.id}`)
@@ -35,6 +46,12 @@ export const SingelAnimal = (props: ISingelAnimalProps) => {
         <button className="btn primary" onClick={showMoreClick}>
           Mer Info
         </button>
+
+        <button className=" btn primary custom-btn" onClick={notify}>
+          {' '}
+          kolla om djuren har fått mat!
+        </button>
+        <ToastContainer />
       </div>
     </>
   )

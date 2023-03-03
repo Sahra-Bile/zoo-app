@@ -3,7 +3,6 @@ import { IAnimals } from '../../models/IAnimals'
 import { getAnimals } from '../../services/animalsService'
 import './animals.scss'
 import '../../style/container.scss'
-
 import { SingelAnimal } from '../singelAnimal/SingelAnimal'
 import { getAnimalFromLs, saveAnimalToLs } from '../../services/storageService'
 

@@ -6,6 +6,7 @@ import './animalDetails.scss'
 interface IFedStatusProps {
   animal: ISingelAnimal
   feedAnimal(animal: ISingelAnimal): void
+  // notice(animal: ISingelAnimal): void
 }
 export const FeedStatus = (props: IFedStatusProps) => {
   const navigate = useNavigate()
@@ -28,7 +29,7 @@ export const FeedStatus = (props: IFedStatusProps) => {
               props.feedAnimal(props.animal)
             }}
           >
-            Mata {props.animal.name} det har gått mer än 3 timmar
+            Mata {props.animal.name} 🥕🌽🍓
           </button>
         )}
         <div className="back">

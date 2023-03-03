@@ -25,12 +25,13 @@ export const AnimalDetails = () => {
     let currentDate = new Date().getTime()
     let animalFromLS: ISingelAnimal[] = getAnimalFromLs()
 
-    let hours = Math.floor(10800000)
-
     //*  kontrollera om det gått mer än 3 timmar sedan senast  djuren blev matades - uppdatera till false
 
     for (let i = 0; i < animalFromLS.length; i++) {
-      if (+currentDate - new Date(animalFromLS[i].lastFed).getTime() > hours) {
+      if (
+        +currentDate - new Date(animalFromLS[i].lastFed).getTime() >
+        10800000
+      ) {
         animalFromLS[i].isFed = false
       }
 

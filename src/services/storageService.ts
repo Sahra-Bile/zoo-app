@@ -15,3 +15,4 @@ export const saveAnimalToLs = <AniamlData>(data: AniamlData): void => {
   localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(data));
 };
 
+
